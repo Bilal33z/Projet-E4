@@ -37,7 +37,7 @@ function createPeerConnection() {
     peerConnection.onicecandidate = event => {
         if (event.candidate) {
             console.log('Nouveau candidat ICE:', event.candidate);
-            // Ici, envoyez le candidat ICE au pair distant via votre serveur de signalisation
+            // Ici, vous devriez envoyer le candidat ICE au pair distant via votre serveur de signalisation
         }
     };
 
@@ -52,7 +52,7 @@ async function createOffer() {
         const offer = await peerConnection.createOffer();
         await peerConnection.setLocalDescription(offer);
         console.log('Offre créée et définie comme description locale:', offer);
-        // Ici, envoyez l'offre au pair distant via votre serveur de signalisation
+        // Ici, vous devriez envoyer l'offre au pair distant via votre serveur de signalisation
     } catch (error) {
         console.error('Erreur lors de la création de l’offre :', error);
     }
@@ -74,7 +74,7 @@ async function createAnswer() {
         const answer = await peerConnection.createAnswer();
         await peerConnection.setLocalDescription(answer);
         console.log('Réponse créée et définie comme description locale:', answer);
-        // Ici, envoyez la réponse au pair distant via votre serveur de signalisation
+        // Ici, vous devriez envoyer la réponse au pair distant via votre serveur de signalisation
     } catch (error) {
         console.error('Erreur lors de la création de la réponse:', error);
     }
@@ -92,3 +92,21 @@ startLocalVideo().then(() => {
     createPeerConnection();
 });
 
+// Fonctions pour l'exemple de hachage SHA-256
+async function hashMessage(message) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(message);
+    const hashBuffer = await window.crypto.subtle.digest('SHA-256', data);
+
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return hashHex;
+}
+
+async function testHashing() {
+    const message = 'Ceci est un message secret';
+    const hash = await hashMessage(message);
+    console.log('Empreinte SHA-256 du message:', hash);
+}
+
+testHashing(); // Test du hachage SHA-256
