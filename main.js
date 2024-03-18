@@ -132,7 +132,7 @@ async function decryptData(encryptedData, iv, key) {
     return decodedData;
 }
 
-const ws = new WebSocket('ws://localhost:8080'); 
+const ws = new WebSocket('ws://86.252.69.123:8080'); 
 
 ws.onopen = () => {
     console.log('Connected to the C server');
