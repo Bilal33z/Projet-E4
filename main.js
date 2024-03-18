@@ -150,4 +150,14 @@ document.getElementById('encrypt-btn').addEventListener('click', () => {
         encryptButton.style.backgroundColor = '#EE4B2B';
     }
 });
+function connectToServer() {
+    const ws = new WebSocket('ws://localhost:8080');
+    ws.onopen = function() {
+        console.log('Connected to the server');
+        ws.send('Hello Server'); // Envoyer un message au serveur après connexion
+    };
+    ws.onmessage = function(event) {
+        console.log('Message from server: ', event.data);
+    };
+}
 
