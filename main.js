@@ -132,33 +132,6 @@ async function decryptData(encryptedData, iv, key) {
     return decodedData;
 }
 
-const ws = new WebSocket('ws://86.252.69.123:8080'); 
-
-ws.onopen = () => {
-    console.log('Connected to the C server');
-    // Envoyez un message ou une action au serveur si nécessaire
-    ws.send('Client connected');
-};
-
-ws.onmessage = (event) => {
-    // Logique pour gérer les messages entrants du serveur
-    console.log('Message from server:', event.data);
-};
-
-ws.onerror = (error) => {
-    // Gérer les erreurs de WebSocket
-    console.error('WebSocket error:', error);
-};
-
-// Fonction pour envoyer des messages au serveur
-function sendMessageToServer(message) {
-    if (ws.readyState === WebSocket.OPEN) {
-        ws.send(message);
-    } else {
-        console.error('WebSocket is not open.');
-    }
-}
-
 // Gestionnaires d'événements pour les boutons, etc.
 document.getElementById('encrypt-btn').addEventListener('click', () => {
     const encryptButton = document.getElementById('encrypt-btn');
