@@ -1,17 +1,55 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 body{
     background:#0F2027;
     background:-webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027) ;
     background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
+    font-family: "Jost", sans-serif;
+    color: #fff;
 }
 
 #join-btn{
-    position: fixed;
+    /* position: fixed;
     top:50%;
     left:50%;
     margin-top:-50px;
-    margin-left:-100px;
+    margin-left:-100px; */
     font-size:18px;
-    padding:20px 40px;
+    padding: 15px 40px;
+}
+.container-card{
+    position: fixed;
+    margin-top: -10%;
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+svg {
+    position: fixed;
+    z-index: -100;
+    top: 0;
+    left: 0;
+}
+
+.join-container {
+
+    width: 400px;
+    height: 300px;
+    background-color: #ffffff0c;
+    border-radius: 15px;
+    backdrop-filter:blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.107);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.03);
 }
 
 #video-streams {
@@ -35,14 +73,25 @@ body{
 }
 
 button{
-    border:none;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.03);
     background-color: cadetblue;
-    color:#fff;
-    padding:10px 20px;
-    font-size:16px;
-    margin:2px;
+    background-image: linear-gradient(to left, cadetblue, cadetblue); /* Initial state */
+    color: #fff;
+    padding: 10px 20px; /* Adjusted padding for better visibility */
+    font-size: 16px;
+    font-family: "Jost", sans-serif;
+    font-weight: 600;
+    margin: 2px;
     cursor: pointer;
+    transition: background-image 1.5s ease; /* Smooth transition for background change */
 }
+
+button:hover {
+    background-image: linear-gradient(to right, #457fca, #5691c8); /* New colors on hover, adjust as needed */
+}
+
 
 #stream-controls{
     display: none;
@@ -61,3 +110,4 @@ button{
         grid-template-columns: repeat(auto-fit, minmax(100%, 1fr)); /* Une seule caméra par ligne sur les écrans encore plus petits */
     }
 }
+
